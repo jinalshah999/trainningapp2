@@ -6,7 +6,8 @@ export const environment = {
   production: false
 };
 export const endPoints={
-  url:'https://rkdemotask.herokuapp.com/'
+  // url:'https://rkdemotask.herokuapp.com/'
+  url:'http://localhost:3000/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

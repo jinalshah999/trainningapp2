@@ -12,6 +12,8 @@ import { routingArr } from "./app.routing";
 import { MenuComponent } from "./menu/menu.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { interceptorclass } from "./interceptorclass";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule,MatFormFieldModule,MatInputModule,MatPaginatorModule,MatSortModule,MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,14 @@ import { interceptorclass } from "./interceptorclass";
     PagenotfoundComponent,
     MenuComponent
   ],
-  imports: [BrowserModule, HttpClientModule, routingArr],
+  imports: [BrowserModule, HttpClientModule, routingArr, BrowserAnimationsModule,
+    MatTableModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatCheckboxModule
+],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:interceptorclass,multi:true}],
   bootstrap: [AppComponent]
 })
