@@ -1,45 +1,74 @@
 <div>
   <h3>Products</h3>
-  <hr>
+  <hr />
   <mat-form-field>
-      <input matInput placeholder="Filter" #filter1
-      (keyup)="applyFilter(filter1.value)" >
-      </mat-form-field>
+    <input
+      matInput
+      placeholder="Filter"
+      #filter1
+      (keyup)="applyFilter(filter1.value)"
+    />
+  </mat-form-field>
   <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="pro_id">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </th>
 
-      <ng-container matColumnDef="pro_id">
-          <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? masterToggle() : null"
-                          [checked]="selection.hasValue() && isAllSelected()"
-                          [indeterminate]="selection.hasValue() && !isAllSelected()"
-                          >
-            </mat-checkbox>
-          </th>
-
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()"
-                          (change)="$event ? selection.toggle(row) : null"
-                          [checked]="selection.isSelected(row)"
-                          >
-            </mat-checkbox>
-          </td>
-        </ng-container>
-        <!-- [aria-label]="checkboxLabel()"
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <!-- [aria-label]="checkboxLabel()"
         [aria-label]="checkboxLabel(row)" -->
 
     <ng-container matColumnDef="pro_name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{row.pro_name}}</td>
+      <td mat-cell *matCellDef="let row">{{ row.pro_name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="pro_price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-        <td mat-cell *matCellDef="let row">{{row.pro_price}}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell *matCellDef="let row">{{ row.pro_price }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cat_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let row">{{ row.cat_name }}</td>
       </ng-container>
 
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let row">
+          <mat-icon (click)="editProduct(row.pro_id)">edit</mat-icon>
+      </td>
+      <td mat-cell *matCellDef="let row">
+          <mat-icon (click)="deleteProduct(row.pro_id)">delete</mat-icon>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row;columns:displayedColumns;" (click)="selection.toggle(row)"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="selection.toggle(row)"
+    ></tr>
   </table>
-  <mat-paginator #paginator1 [pageSize]="3" [pageSizeOptions]="[3,5,10]" ></mat-paginator>
-  <button (click)="onDeleteAll()" >Click Me</button>
+
+  <mat-paginator
+    #paginator1
+    [pageSize]="3"
+    [pageSizeOptions]="[3, 5, 10]"
+  ></mat-paginator>
+  <button (click)="onDeleteAll()">Click Me</button>
 </div>

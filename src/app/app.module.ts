@@ -13,7 +13,11 @@ import { MenuComponent } from "./menu/menu.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { interceptorclass } from "./interceptorclass";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule,MatFormFieldModule,MatInputModule,MatPaginatorModule,MatSortModule,MatCheckboxModule } from '@angular/material';
+import { MatTableModule,MatFormFieldModule,MatInputModule,MatPaginatorModule,MatSortModule,MatCheckboxModule,MatSelectModule, MatButtonModule, MatRadioModule, MatCardModule, MatIconModule } from '@angular/material';
+import { AddProductComponent } from './product-list/add-product/add-product.component';
+import { DemoComponent } from './demo/demo.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditProductComponent } from './product-list/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { MatTableModule,MatFormFieldModule,MatInputModule,MatPaginatorModule,Mat
     HomeComponent,
     ShellComponent,
     PagenotfoundComponent,
-    MenuComponent
+    MenuComponent,
+    AddProductComponent,
+    DemoComponent,
+    EditProductComponent
   ],
   imports: [BrowserModule, HttpClientModule, routingArr, BrowserAnimationsModule,
     MatTableModule,
@@ -31,7 +38,13 @@ import { MatTableModule,MatFormFieldModule,MatInputModule,MatPaginatorModule,Mat
   MatInputModule,
   MatPaginatorModule,
   MatSortModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSelectModule,
+  MatButtonModule,
+  MatRadioModule,
+  MatCardModule,
+  ReactiveFormsModule,
+  MatIconModule
 ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:interceptorclass,multi:true}],
   bootstrap: [AppComponent]

@@ -1,0 +1,57 @@
+<form [formGroup]="editProductForm"  (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>Edit Product</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Add Product Name" formControlName="pro_name">
+              <mat-error *ngIf="editProductForm.controls['pro_name'].hasError('required')">
+                  Product Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Add Product Price" formControlName="pro_price" type=number>
+                <mat-error *ngIf="editProductForm.controls['pro_price'].hasError('required')">
+                    Product Price is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Add Stock On Hand" formControlName="pro_soh" type=number>
+                  <mat-error *ngIf="editProductForm.controls['pro_soh'].hasError('required')">
+                      Stock on hand is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                      <mat-select  placeholder="category" formControlName="fk_cat_id" >
+                          <mat-option  *ngFor="let item of categoryArray;" [value]="item.cat_id">
+                            {{ item.cat_name }}
+                          </mat-option>
+                        </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
