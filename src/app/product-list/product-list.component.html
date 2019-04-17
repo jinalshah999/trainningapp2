@@ -9,7 +9,8 @@
       (keyup)="applyFilter(filter1.value)"
     />
   </mat-form-field>
-  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table matSort
+         [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="pro_id">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox
@@ -47,28 +48,34 @@
         <td mat-cell *matCellDef="let row">{{ row.cat_name }}</td>
       </ng-container>
 
-    <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let row">
-          <mat-icon (click)="editProduct(row.pro_id)">edit</mat-icon>
-      </td>
-      <td mat-cell *matCellDef="let row">
-          <mat-icon (click)="deleteProduct(row.pro_id)">delete</mat-icon>
+    <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let row" style="cursor: pointer">
+          <button mat-button (click)="editProduct(row.pro_id)">
+            <mat-icon>edit</mat-icon>
+          </button>
       </td>
     </ng-container>
+
+    <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let row" style="cursor: pointer">
+            <button mat-button (click)="deleteProduct(row.pro_id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+      </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
       mat-row
       *matRowDef="let row; columns: displayedColumns"
-      (click)="selection.toggle(row)"
-    ></tr>
+      (click)="selection.toggle(row)"></tr>
   </table>
 
   <mat-paginator
     #paginator1
     [pageSize]="3"
-    [pageSizeOptions]="[3, 5, 10]"
-  ></mat-paginator>
-  <button (click)="onDeleteAll()">Click Me</button>
+    [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+  <button (click)="onDeleteAll()">Delete All</button>
 </div>

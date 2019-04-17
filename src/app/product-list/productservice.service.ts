@@ -27,9 +27,10 @@ export class ProductserviceService {
     return this._http.get<Category[]>(this.categoryURL);
   }
 
-  deleteProducts(arrIds) {
+  deleteProducts(arrIds:number[]) {
     let header=new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.url + 'delete', arrIds,{headers:header});
+    let body = JSON.stringify(arrIds);
+    return this._http.post(this.url + 'delete', body, {headers:header});
   }
 
   addProduct(item:Product) {
